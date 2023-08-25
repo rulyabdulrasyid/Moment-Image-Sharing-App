@@ -5,8 +5,8 @@ const imageRouter = require("./imageRouter");
 const userRouter = require("./userRouter");
 const categoryRouter = require("./categoryRouter");
 
-router.use("/category", categoryRouter);
+router.use("/categories", categoryRouter);
 router.use("/users", userRouter);
-router.use("/", imageRouter);
+router.use("/images", imageRouter);
 
 module.exports = router;
