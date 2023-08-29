@@ -1,5 +1,3 @@
-"use client";
-
 import { Providers } from "./providers";
 import { Navbar, Footer } from "@/components";
 export const metadata = {

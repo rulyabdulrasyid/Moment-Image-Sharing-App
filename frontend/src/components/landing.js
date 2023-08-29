@@ -32,7 +32,7 @@ export default function Landing() {
           <Heading
             lineHeight={1.1}
             fontWeight={600}
-            fontSize={{ base: "3xl", sm: "4xl", lg: "6xl" }}
+            fontSize={{ base: "3xl", sm: "4xl", lg: "5xl" }}
           >
             <Text
               as={"span"}
@@ -48,17 +48,19 @@ export default function Landing() {
                 zIndex: -1,
               }}
             >
-              Write once,
+              "Capturing Moments,
             </Text>
             <br />
             <Text as={"span"} color={"red.400"}>
-              use everywhere!
+              Sharing Stories: Your Window to the World's Images"
             </Text>
           </Heading>
           <Text color={"gray.500"}>
-            Snippy is a rich coding snippets app that lets you create your own
-            code snippets, categorize them, and even sync them in the cloud so
-            you can use them anywhere. All that is free!
+            "Welcome to our image sharing app, where every pixel tells a story.
+            Discover and share breathtaking photos, unforgettable memories, and
+            the beauty of life captured through the lens. Join a global
+            community of visual storytellers and explore the world, one image at
+            a time."
           </Text>
           <Stack
             spacing={{ base: 4, sm: 6 }}
