@@ -21,9 +21,11 @@ import {
   Tooltip,
   Grid,
   Link,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { deleteImage } from "@/fetching/deleteData";
 
 function ImageCard(props) {
   const { id, title, image, date, location } = props;
@@ -44,24 +46,27 @@ function ImageCard(props) {
     router.push(`/images/${imageId}`);
   };
 
+  const [imageList, setImageList] = useState([]);
+  const toast = useToast();
+
   const handleDelete = async (imageId) => {
     const accessToken = sessionStorage.getItem("accessToken");
     try {
-      await deleteContent(imageId, accessToken);
+      await deleteImage(imageId, accessToken);
       toast({
         title: "Image deleted",
         status: "success",
         duration: 3000,
         isClosable: true,
       });
-      const updatedContentList = contentList.filter(
-        (content) => content.id !== contentId
+      const updatedImageList = imageList.filter(
+        (image) => image.id !== imageId
       );
-      setContentList(updatedContentList);
-      router.push("/");
+      setImageList(updatedImageList);
+      router.push("/galery");
     } catch (error) {
       toast({
-        title: "Error deleting content",
+        title: "Error deleting Image",
         description: error.message,
         status: "error",
         duration: 3000,
@@ -128,7 +133,14 @@ function ImageCard(props) {
                   <PopoverBody>
                     {!isLogin ? (
                       <Grid>
-                        <Button colorScheme="blue">DETAIL</Button>
+                        <Button
+                          colorScheme="blue"
+                          onClick={() => {
+                            handleImageDetail(id);
+                          }}
+                        >
+                          DETAIL
+                        </Button>
                       </Grid>
                     ) : (
                       <Grid templateColumns="repeat(3, 1fr)" gap={2}>

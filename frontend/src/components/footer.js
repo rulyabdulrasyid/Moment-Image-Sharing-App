@@ -25,7 +25,7 @@ export default function Footer() {
         justify={{ base: "center", md: "space-between" }}
         align={{ base: "center", md: "center" }}
       >
-        <Stack direction={"row"} spacing={6}>
+        {/* <Stack direction={"row"} spacing={6}>
           <Box as="a" href={"#"}>
             Home
           </Box>
@@ -38,8 +38,8 @@ export default function Footer() {
           <Box as="a" href={"#"}>
             Contact
           </Box>
-        </Stack>
-        <Text>© 2022 Chakra Templates. All rights reserved</Text>
+        </Stack> */}
+        <Text>© 2023 Moment-Image-Sharing-App. All rights reserved</Text>
       </Container>
     </Box>
   );

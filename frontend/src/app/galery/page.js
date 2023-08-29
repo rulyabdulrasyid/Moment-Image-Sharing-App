@@ -36,10 +36,11 @@ import {
 } from "@chakra-ui/react";
 import { fetchImage } from "@/fetching/fetchData";
 import { useState, useEffect } from "react";
-import { ImageCard } from "@/components";
+import { ImageCard, CreateImage } from "@/components";
 
 function Galery() {
   const [images, setImages] = useState([]);
+  const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -47,6 +48,15 @@ function Galery() {
       setImages(images);
     };
     fetchImages();
+  }, []);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("accessToken");
+    if (token) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
   }, []);
 
   return (
@@ -63,6 +73,7 @@ function Galery() {
           </Text>
         </Box>
         <Box>
+          {!isLogin ? "" : <CreateImage mb={2} />}
           <Wrap justify="space-evenly">
             {images.map((image, idx) => (
               <ImageCard key={idx} {...image} />

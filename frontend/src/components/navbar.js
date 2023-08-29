@@ -120,7 +120,7 @@ function Navbar() {
               {!isLogin ? (
                 <Button
                   onClick={() => router.push("/authentication")}
-                  bg={"red"}
+                  colorScheme="green"
                 >
                   Login
                 </Button>

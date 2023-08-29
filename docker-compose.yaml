@@ -1,0 +1,75 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: ./backend
+    image: moment-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - DATABASE_URL=postgres://postgres:mypostgres@postgres:5432/DB_ImageShare
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${PASSWORD}
+      - POSTGRES_DB=${DATABASE}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  frontend:
+    build:
+      context: ./frontend
+    image: moment-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  postgres-data:
+# version: "3"
+
+# services:
+#   frontend:
+#     build:
+#       context: ./frontend
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - backend
+
+#   backend:
+#     build:
+#       context: ./backend
+#     ports:
+#       - "3001:3001"
+#     depends_on:
+#       - pqsqldb
+#     environment:
+#       - DB_USERNAME=${DB_USERNAME}
+#       - PASSWORD=${PASSWORD}
+#       - DATABASE=${DATABASE}
+#       - DATABASE_TEST=${DATABASE_TEST}
+#       - HOST=${HOST}
+#       - JWT_SECRET=${JWT_SECRET}
+#       - NODE_ENV=${NODE_ENV}
+#       - PORT=${PORT}
+
+#   pqsqldb:
+#     image: postgres:15
+#     ports:
+#       - "5432:5432"
+#     env_file:
+#       - ./backend/.env
+#     environment:
+#       - POSTGRES_USER=${DB_USERNAME}
+#       - POSTGRES_PASSWORD=${PASSWORD}
+#       - POSTGRES_DB=${DATABASE}
+
